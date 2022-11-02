@@ -1,4 +1,8 @@
 from django.db import models
+from django.contrib.auth import get_user_model
+
+
+User = get_user_model()
 
 
 class Book(models.Model):
@@ -30,4 +34,9 @@ class Book(models.Model):
     )
     add_date = models.DateTimeField(
         verbose_name="Дата добавления книги на сайт"
+    )
+    user_site = models.ForeignKey(
+        User,
+        verbose_name='Пользователь',
+        related_name='books'
     )
