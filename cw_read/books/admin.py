@@ -10,6 +10,7 @@ class BookAdmin(admin.ModelAdmin):
         'title',
         'author',
         'genre',
+        'cover',
         'pub_date',
         'add_date',
         'user_site'

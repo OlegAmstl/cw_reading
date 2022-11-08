@@ -1,0 +1,21 @@
+{% extends '../base.html' %}
+{% block content %}
+{% load static %}
+<main class="container">
+  <h3 class="title_index">Последние добавления на сайт</h3>
+  <div class="new_books">
+    {% for book in books %}
+      <div class="card custom_card" style="width: 18rem;">
+          <img src="{{ book.cover.url }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ book.title }}</h5>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Автор: {{ book.author }} </li>
+            <li class="list-group-item">Жанр: {{ book.genre }}</li>            
+          </ul>
+        </div>
+    {% endfor %}
+  </div>
+</main>
+{% endblock %}
