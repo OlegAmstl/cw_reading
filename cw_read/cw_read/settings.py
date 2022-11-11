@@ -3,6 +3,8 @@ import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+LOGIN_URL = 'users:login'
+LOGIN_REDIRECT_URL = 'books:index'
 
 SECRET_KEY = 'django-insecure-$ng*@ovugz5zo(#up0+fgub+p3957^g!zs7!h_7zrx!iowt-ko'
 
@@ -17,8 +19,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'core.apps.CoreConfig',
     'books.apps.BooksConfig',
     'users.apps.UsersConfig',
+    'sorl.thumbnail'
 ]
 
 MIDDLEWARE = [
@@ -88,3 +92,6 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')

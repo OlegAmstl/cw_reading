@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="container custom_container">
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.title }}<br>
+        {{ form.author }}<br>
+        {{ form.cover }}<br>
+        {{ form.pub_date }}<br>
+        {{ form.description }}<br>
+        {{ form.num_pages }}<br>
+        {{ form.genre }}<br>
+          <div class="col-md-6 offset-md-4">
+            <button type="submit" class="btn btn-primary">
+              Добавить
+            </button>
+            <span>{{ err }}</span>
+          </div>
+      </form>
+  </div>
+{% endblock %}

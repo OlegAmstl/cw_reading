@@ -21,20 +21,24 @@ class Book(models.Model):
     )
     cover = models.ImageField(
         verbose_name="Обложка книги",
-        upload_to="books/"
+        upload_to="books/",
+        blank=True
     )
     genre = models.CharField(
         max_length=150,
         verbose_name="Жанр книги"
     )
-    pub_date = models.DateField(
+    pub_date = models.CharField(
+        max_length=50,
         verbose_name="Дата публикации"
     )
     num_pages = models.IntegerField(
-        verbose_name="Количество страниц"
+        verbose_name="Количество страниц",
+        blank=True
     )
     add_date = models.DateTimeField(
-        verbose_name="Дата добавления книги на сайт"
+        verbose_name="Дата добавления книги на сайт",
+        auto_now=True
     )
     user_site = models.ForeignKey(
         User,
