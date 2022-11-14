@@ -1,7 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.views.generic import CreateView
-from django.urls import reverse_lazy
 
 from .models import Book
 from .forms import AddBook
@@ -14,13 +12,7 @@ def index(request):
     }
     return render(request, 'books/index.html', context=context)
 
-#
-# class AddBookView(CreateView):
-#     '''View для отображения страницы добавления новой книги на портал.'''
-#
-#     form_class = AddBook
-#     success_url = reverse_lazy('books:index')
-#     template_name = 'books/add_book.html'
+
 @login_required
 def book_add(request):
     '''Добавление новой книги на сайт.'''
@@ -40,5 +32,13 @@ def book_add(request):
         'form': form,
         'err': err
     }
+    return render(request, template, context=context)
 
+
+def book_detail(request, pk):
+    template = 'books/book_detail.html'
+    book = get_object_or_404(Book, pk=pk)
+    context = {
+        'book': book
+    }
     return render(request, template, context=context)

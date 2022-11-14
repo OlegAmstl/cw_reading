@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Пользователь Amstl{% endblock %}
+{% block content %}
+  <div class="container">
+      <div class="profile-header">
+          <div class="profile-avatar">
+              <img src="#" alt="Avatar">
+          </div>
+          <div class="profile-info">
+              <h2 class="profile-info-username">Amstl</h2>
+          </div>
+          <div class="profile-info-books">
+              <div class="books-read">
+                  <p>Прочитано за все время:</p>
+                  <p>112</p>
+              </div>
+              <div class="books-rating">
+                  <p>Средняя оценка</p>
+                  <p>3.2</p>
+              </div>
+              <div class="books-year">
+                  <p>Прочитано в этом году:</p>
+                  <p>12</p>
+              </div>
+          </div>
+      </div>
+      <div class="profile-content">
+          <div class="read-books"></div>
+          <div class="friends"></div>
+      </div>
+  </div>
+{% endblock %}

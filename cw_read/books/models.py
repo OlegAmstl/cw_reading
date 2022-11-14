@@ -46,6 +46,7 @@ class Book(models.Model):
         related_name='books',
         on_delete=models.CASCADE,
     )
+    read = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'Книга'

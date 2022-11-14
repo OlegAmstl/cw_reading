@@ -21,4 +21,5 @@ urlpatterns = [
          ),
          name='password_reset'
          ),
+    path('profile/<str:username>/', profile, name='profile')
 ]
