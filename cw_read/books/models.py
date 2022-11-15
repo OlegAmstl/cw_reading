@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 
-
 User = get_user_model()
 
 
@@ -54,3 +53,18 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+
+    class BooksReadBase(models.Model):
+        user = models.ForeignKey(User,
+                                 verbose_name='Пользователь',
+                                 on_delete=models.CASCADE)
+
+        class Meta:
+            abstract = True
+
+        def __str__(self):
+            return self.user.username
+
+    class AddReadBook(BooksReadBase):
+        class Meta:
+            db_table = ''

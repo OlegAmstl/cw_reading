@@ -12,7 +12,7 @@
           <div class="profile-info-books">
               <div class="books-read">
                   <p>Прочитано за все время:</p>
-                  <p>112</p>
+                  <p>{{ read_books }}</p>
               </div>
               <div class="books-rating">
                   <p>Средняя оценка</p>
@@ -22,6 +22,16 @@
                   <p>Прочитано в этом году:</p>
                   <p>12</p>
               </div>
+              {% if following %}
+                <a
+                    class="btn btn-lg btn-light"
+                    href="{% url 'posts:profile_unfollow' name %}"
+                    role="button">Отписаться</a>
+              {% else %}
+                <a class="btn btn-lg btn-primary"
+                   href="{% url 'posts:profile_follow' name %}"
+                   role="button">Подписаться</a>
+              {% endif %}
           </div>
       </div>
       <div class="profile-content">

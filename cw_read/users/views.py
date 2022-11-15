@@ -3,6 +3,8 @@ from django.views.generic import CreateView
 from django.urls import reverse_lazy
 
 from .forms import CreatingForm
+from books.models import User, Book
+from .models import Follow
 
 
 class SignUp(CreateView):
@@ -15,4 +17,17 @@ class SignUp(CreateView):
 
 def profile(request, username):
     template = 'users/profile.html'
-    userrr = get_object_or_404(U)
+    author = get_object_or_404(User, username=username)
+    user = request.user
+    read_bboks = Book.objects.filter(user_site=user).count()
+    following = False
+    if user.is_authenticated:
+        if Follow.objects.filter(user=user, author=author).exists():
+            following=True
+    context = {
+        'read_books': read_bboks,
+        'author': author,
+        'user': user,
+        'following': following
+    }
+    return render(request, template, context=context)

@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'books.apps.BooksConfig',
     'users.apps.UsersConfig',
+    'articles.apps.ArticlesConfig',
     'sorl.thumbnail'
 ]
 

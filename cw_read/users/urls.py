@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth.views import LogoutView, LoginView, PasswordResetView
 
-from .views import SignUp
+from .views import SignUp, profile
 
 app_name = 'users'
 
