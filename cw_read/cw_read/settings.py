@@ -1,12 +1,27 @@
 import os
 
 from pathlib import Path
+# python-dotenv
+# https://pypi.org/project/python-dotenv/#getting-started
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+# end python-dotenv
+
+# django_debug_toolber
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'books:index'
 
-SECRET_KEY = 'django-insecure-$ng*@ovugz5zo(#up0+fgub+p3957^g!zs7!h_7zrx!iowt-ko'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = True
 
@@ -18,13 +33,23 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
+    'django_extensions',
+    'allauth',
+    'allauth.account',
+    'debug_toolbar',
+    'ckeditor',
     'core.apps.CoreConfig',
     'books.apps.BooksConfig',
     'users.apps.UsersConfig',
     'articles.apps.ArticlesConfig',
-    'sorl.thumbnail'
+    'sorl.thumbnail',
+    'taggit',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -34,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware', # django debug toolbar
 ]
 
 ROOT_URLCONF = 'cw_read.urls'
@@ -53,6 +79,14 @@ TEMPLATES = [
         },
     },
 ]
+
+# django-allauth
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+# end django-allauth
 
 WSGI_APPLICATION = 'cw_read.wsgi.application'
 
@@ -86,13 +120,34 @@ USE_I18N = True
 
 USE_TZ = True
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 STATIC_URL = 'static/'
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
+
+# django-ckeditor
+CKEDITOR_CONFIGS = {
+    'default': {
+        'width': 'auto',
+    },
+}
+
+# end django-ckeditor
+
+# email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.getenv('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD')
+# end email
+
+# В производстве убрать
+os.environ['DJANGO_ALLOW_ASYNC_UNSAFE'] = 'true'
