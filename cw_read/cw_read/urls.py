@@ -8,7 +8,8 @@ urlpatterns = [
     path('', include('books.urls', namespace='books')),
     path('auth/', include('users.urls', namespace='users')),
     path('auth/', include('django.contrib.auth.urls')),
-    path('articles/', include('articles.urls', namespace='articles'))
+    path('articles/', include('articles.urls', namespace='articles')),
+    path('summernote/', include('django_summernote.urls')),
 ]
 
 

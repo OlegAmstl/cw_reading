@@ -1,6 +1,5 @@
 from django.forms import (ModelForm,
                           TextInput,
-                          ImageField,
                           NumberInput,
                           DateInput,
                           Textarea)

@@ -84,3 +84,17 @@ INSTALLED_APPS = (
 python manage.py shell_plus --notebook
 ```
 [django-extensions]https://django-extensions.readthedocs.io/en/latest/
+
+## Настройка django-summernote
+Редактор постов.
+```commandline
+pip install django-summernote
+```
+```commandline
+INSTALLED_APPS = (
+...
+'django_summernote', 
+)
+```
+
+[django-summernote]https://github.com/summernote/django-summernote

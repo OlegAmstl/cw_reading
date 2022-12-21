@@ -3,5 +3,14 @@
 {% block content %}
   <div class="container">
     <h1>Здесь будут находиться все статьи.</h1>
+    <div class="container">
+      {% for article in articles %}
+        {{ article.title }}
+        <div>
+          {{ article.text|safe }}
+        </div>
+      {% endfor %}
+    </div>
+    <a href="#">Написать статью</a>
   </div>
 {% endblock content %}

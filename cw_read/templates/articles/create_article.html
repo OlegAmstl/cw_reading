@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Написать статью{% endblock title %}
+{% block content %}
+<div class="container custom_container">
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.title }}<br>
+    {{ form.text }}<br>
+    <div class="col-md-6 offset-md-4">
+      <button type="submit" class="btn btn-primary">
+        Добавить
+      </button>
+      <span>{{ err }}</span>
+    </div>
+  </form>
+</div>
+{% endblock content %}

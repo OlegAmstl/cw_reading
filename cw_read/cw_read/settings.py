@@ -37,17 +37,23 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'django_extensions',
+    'django_summernote',
     'allauth',
     'allauth.account',
     'debug_toolbar',
     'ckeditor',
     'core.apps.CoreConfig',
+    'crispy_forms',
+    'crispy_bootstrap5',
     'books.apps.BooksConfig',
     'users.apps.UsersConfig',
     'articles.apps.ArticlesConfig',
     'sorl.thumbnail',
     'taggit',
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+CRISPY_TEMPLATE_PACKS = 'bootstrap5'
 
 SITE_ID = 1
 
